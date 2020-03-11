@@ -1,0 +1,28 @@
+function smallestDifference(arrOne, arrTwo) {
+  arrOne.sort((a,b)=> a-b);
+  arrTwo.sort((a,b)=> a-b);
+	let current = 0;
+	let smallest = Infinity;
+	let idxOne = 0
+	let idxTwo = 0
+	let result = []
+	while(idxOne < arrOne.length && idxTwo < arrTwo.length){
+		let first = arrOne[idxOne]
+		let second = arrTwo[idxTwo]
+		if(first > second){
+			current = first - second;
+			idxTwo++
+		}else if (second > first){
+			current = second - first
+			idxOne++
+		}else{
+			return[first, second]
+		}
+		
+		if(smallest > current){
+			smallest = current
+			result = [first, second]
+		}
+	}
+	return result
+}
