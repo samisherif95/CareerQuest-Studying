@@ -1,0 +1,78 @@
+We are given an array asteroids of integers representing asteroids in a row.
+For each asteroid, the absolute value represents its size, and the sign represents its direction (positive meaning right, negative meaning left). Each asteroid moves at the same speed.
+Find out the state of the asteroids after all collisions. If two asteroids meet, the smaller one will explode. If both are the same size, both will explode. Two asteroids moving in the same direction will never meet.
+Example 1: 
+Input: 
+asteroids = [1,2,3,-3,4,-2]
+Output: [1,2,4]
+
+Note:
+The length of asteroids will be at most 10000.
+Each asteroid will be a non-zero integer in the range [-1000, 1000].
+
+Assumption 1) if array values all of the same sign nothing will collide.
+	      2)if negative value before positive values then going opposite directions so will never collide
+                     3) always the j value will be the one we care about if its less than zero
+                      4) only increment i & j if both same direction or if negative comes before positive
+
+        
+[1,2,5,-2]
+1 ->
+2 ->
+5 ->
+      
+[1,2,5]
+           3   4  
+[1,2,3,4,-6]
+
+[-1,-2,-3,3,-4,2]
+[-1,-2,-3,-4,2]
+
+Arr[i] = 5 -> 5
+Arr[j] = -3 -> 3
+
+
+
+
+
+
+
+
+
+
+
+Psudeocode:
+Initalize i=0 & j=i+1
+While loop j is less than array.length-1
+Check if value of i is +ve and value of j is negative
+Create temp variables for values of i and j
+If valueI > valueJ
+splice(j,1)
+Else if valueI < valueJ
+splice(i,1)
+		Iv.	else splice(i,2)
+				
+Else 
+Increment i & j
+
+Code:  
+	Function asteroids (arr){ 						// arr =[1,2,4]
+		Let i =0; let j =i+1;					// i =2 j=3
+		while(j < arr.length-1){					//  4 > 0 && -2 < 0  true
+			if( arr[i] > 0 && arr[j] < 0){			 
+				Let valueI = Math.abs(arr[i]);		// valueI = 4
+				Let valueJ = Math.abs(arr[j]);		// valueJ = 2
+				if( valueI > valueJ){			//true
+					arr.splice(j,1)
+}else if (valueI < valueJ){ 			// 
+	arr.splice(i,1)
+}else{					
+	arr.splice(i,2)			  
+}
+}else{						
+I++;							
+j++;
+}
+}
+Return arr
+}
