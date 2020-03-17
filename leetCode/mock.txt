@@ -1,0 +1,78 @@
+anscetor tree
+bunch of nodes has data, parent pointer
+3 args top anscestor, two random descendants
+should return youngest common anscestor of two
+           
+           
+            null
+             |    
+ 1           a
+          /     \
+ 2       b       c
+        /\       /\
+ 3     d  e     f  g    
+      /\
+ 4   h  i                  
+
+    args1 = a
+    args2 = b
+    args3 = c
+    YCA(a, b, c) => a
+    YCA(a, d, e) => b
+    YCA(a, d, i) => b
+
+    //most basic is if both args are pointing to same parent
+    // 
+    // second most basic if they are on the same side of the tree then
+    the answer would be the parent of the lesser level
+    //
+    //check condion if parents of args2& args3 are equal return node.parent
+
+pusdocode: // THE MOST IMPORTANT STEP IN THE ENTIRE SESSION
+    get the depth of each node
+      1) pass in top node + child
+      2) initialize depth to be 0
+      3) while child isn't top node
+        a) increment depth by one
+        b) child becomes its parent
+      4) return depth
+    if not same level go up to next level of lower node
+    once they are on the same level check if parnet is equal for both nodes
+    if yes : return node.parent
+    if not recursion: to get the parent of each of the nodes
+
+code:
+    function YCA(head,child1,child2){   //a, i, f                   // a, d, f            // a, b, c
+        let depth1 = getDepth(child1, head);   // 3                 // 2                  // 1
+        let depth2 = getDepth(child2, head);   // 2                 // 2                  // 1
+        if(depth1 > depth2){                   // true              // false              // false
+            return YCA(head,child1.next,child2)       // a
+        }else if(depth2 > depth1){                                  // false              // false
+            return YCA(head,child1,child2.next)
+        }else{
+            //keep going up untill parent nodes is equal
+            if(child1.next.data === child2.next.data){              // false              // true
+                return child1.next                                                        // a
+            }else{
+                return YCA(head,child1.next,child2.next)            // a
+            }
+        }
+    }
+
+    function getDepth(child,head){    //i, a
+        let depth = 0;
+        while(child.data !== head.data){  // a === a
+            depth++;            // 3
+            child = child.next; // child = a
+        }
+        return depth;  //3
+    }
+
+
+1. Clarify the problem & test I/O and edge cases
+2. Formulate your approach(es)
+3. Pseudocode best approach
+4. Code it
+5. Walk through an example input
+6. Determine the Big O time and space complexity
+(7). Attempt to optimize
