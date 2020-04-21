@@ -1,0 +1,82 @@
+Given a matrix of m x n elements(m rows, n columns), return all elements of the matrix in spiral order.
+    Example 1:
+Input:
+[
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+
+Example 2:
+Input:
+[
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12]
+]
+Output: [1, 2, 3, 4, 8, 12, 11, 10, 9, 5, 6, 7]
+Let set = New Set()
+    .add
+    .has
+    .delete
+[
+    [1, 2, 3], 00 01 02
+    [4, 5, 6], 10 11 12
+    [7, 8, 9]		   20 21 22
+]
+Inp called arr
+//output = []
+beginCol = 0
+beginRow = 0
+Totalrows = arr.length - 1
+TotalCols = arr[0].length - 1
+//if first row add all values to output array
+// if i add indicies to set 
+Psudeocode:
+Let set = new Set()
+while (beginCol < totalCols && beginRow < totalRows) {
+    // going right
+    Let col = beginCol
+    while (col <= totalCols) {
+        if (Set.has([beginRow, col]) break;
+        output.push(arr[beginRow][Col]);
+        Set.add([beginRow, col])
+        col++
+    }
+    //going down
+    Let row = beginRow + 1
+    while (row <= totalRows) {
+        if (Set.has([row, TotalCol]) break;
+        output.push(arr[row][TotalCol])
+        Set.add([row, Totalcol])
+        row++
+    }
+
+    //going left
+    Let col = totalCol - 1
+    while (col >= beginCol) {
+        if (Set.has([TotalRow, col]) break;
+        output.push(arr[TotalRow, col]);
+        Set.add([TotalRow, col])
+        col--;
+    }
+
+    //going up
+    Let row = TotalRow - 1
+    while (row >= beginRow) {
+        if (Set.has([row, beginCol])) break;
+        output.push(arr[row, beginCol]);
+        Set.add([row, beginCol])
+        Row--;
+    }
+    beginRow++;
+    beginCol++;
+    totalRow--;
+    totalCol--
+}
+Return output
+}
+
+
+
